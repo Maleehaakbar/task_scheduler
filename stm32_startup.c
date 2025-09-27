@@ -10,11 +10,13 @@ extern uint32_t _sdata;
 extern uint32_t _edata;
 extern uint32_t _sbss;
 extern uint32_t _ebss;
+extern uint32_t _la_data;
 
 uint32_t *dest = &_sdata;
-uint32_t *src = &_etext;
+uint32_t *src = &_la_data;
 uint32_t *bss_des = &_sbss;
 
+ void __libc_init_array(void);
 void main(void);
 void Reset_handler(void);
 void NMI_handler                    (void) __attribute__ ((weak, alias("Default_Handler")));    //(void) is in place of function parameter, not a part of attribute ,
@@ -191,8 +193,8 @@ uint32_t vectors[] __attribute__((section(".isr_section"))) =
 
 void Reset_handler(void)
 {    
-    uint32_t data_size = &_edata - &_sdata;
-    uint32_t bss_size = &_ebss - &_sbss;
+    uint32_t data_size = (uint32_t)&_edata - (uint32_t)&_sdata;   //subract end and start of data section to get its size
+    uint32_t bss_size = (uint32_t)&_ebss - (uint32_t)&_sbss;      //subract end and start of bss section to get its size
     uint32_t i = 0;
 
     //copy ,data in SRAM
@@ -205,6 +207,8 @@ void Reset_handler(void)
     {
         *bss_des = 0;
     }
+
+    __libc_init_array();
 
     main();
 

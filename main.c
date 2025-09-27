@@ -11,12 +11,10 @@
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif*/
 
-#include<stdio.h>
+#include <stdio.h>
 #include <stdint.h>
 
-uint32_t x=0;
-char *str = "Hello";
-uint32_t y=1;
+uint8_t x=8;
 
 int main(void)
 {
@@ -25,7 +23,8 @@ int main(void)
 	 * syscalls.c must contain code given in the below link
 	 * https://github.com/niekiran/Embedded-C/blob/master/All_source_codes/target/itm_send_data.c
 	 */
-//	printf("Hello world\n");
+  printf("Hello world\n");
+  printf (" value of x is %d ", x);
 
 	while(1){
 
