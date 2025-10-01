@@ -18,3 +18,6 @@ final.elf : main.o stm32_startup.o syscalls.o
 
 clean:
 	rm -rf *.o *.elf
+
+load:
+	openocd -f board/st_nucleo_f4.cfg

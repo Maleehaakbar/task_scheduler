@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint8_t x=8;
+uint32_t x=8;
 
 int main(void)
 {
@@ -23,8 +23,8 @@ int main(void)
 	 * syscalls.c must contain code given in the below link
 	 * https://github.com/niekiran/Embedded-C/blob/master/All_source_codes/target/itm_send_data.c
 	 */
-  printf("Hello world\n");
-  printf (" value of x is %d ", x);
+  //printf("Hello world\n");
+  //printf (" value of x is %ld ", x);
 
 	while(1){
 
